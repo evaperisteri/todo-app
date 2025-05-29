@@ -1,15 +1,8 @@
 import { useReducer } from 'react';
 import TodoForm from "./TodoForm.tsx";
 import TodoList from "./TodoList.tsx";
+import type { TodoProps, Action } from "../Types.tsx";
 
-type TodoProps = {
-    id: number;
-    text:string;
-}
-
-type Action =
-    | {type: "ADD"; payload: string}
-    | {type: "DELETE"; payload: number}
 
 const todoReducer = (state: TodoProps[], action: Action): TodoProps[] => {
     switch (action.type) {
