@@ -1,3 +1,5 @@
+import React from "react";
+
 export type TodoProps = {
     id: number;
     text:string;
@@ -6,6 +8,7 @@ export type TodoProps = {
 export type Action =
     | {type: "ADD"; payload: string}
     | {type: "DELETE"; payload: number}
+    | {type: "EDIT"; payload: { id: number; newText: string } }
 
 export type TodoFormProps = {
     dispatch: React.Dispatch<Action>;
