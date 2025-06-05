@@ -17,7 +17,7 @@ const TodoForm =({dispatch}: TodoFormProps)=>{
     return(
         <>
             <form onSubmit={handleSubmit} className="flex gap-4 mb-4">
-                <input type="text" value={text} onChange={handleChange} className="border p-2 rounded" placeholder="New task..."/>
+                <input type="text" value={text} onChange={handleChange} className="flex-1 border p-2 rounded" placeholder="New task..."/>
                 <button type="submit" className="bg-cf-dark-gray text-white px-4 py-2 rounded"> Add </button>
             </form>
         </>
