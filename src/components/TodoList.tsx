@@ -2,25 +2,29 @@ import {Trash2, Edit, Save, X, Square, CheckSquare} from "lucide-react";
 import type { TodoListProps } from "../types.ts"
 import {useState} from "react";
 
-const TodoList =({todos,dispatch}: TodoListProps) => {
+const TodoList =({todos,dispatch, inputRef}: TodoListProps) => {
 
     const [editId, setEditId] = useState<number | null>(null);
     const [editText, setEditText] = useState("");
     const handleDelete = (id: number)=>()=>{
         dispatch({type: "DELETE", payload: id})
+        inputRef.current?.focus();
     }
     const handleEdit = (id: number, text: string) => () =>{
         setEditId(id);
         setEditText(text);
+        inputRef.current?.focus();
     }
     const handleCancel = () => {
         setEditId(null);
         setEditText("");
+        inputRef.current?.focus();
     }
     const handleSave = (id: number) => () => {
         dispatch({type: "EDIT", payload: {id, newText: editText}});
         setEditId(null);
         setEditText("");
+        inputRef.current?.focus();
     }
     const handleToggle = (id: number) => () => {
         dispatch({type: "COMPLETE", payload: id});
@@ -35,7 +39,7 @@ const TodoList =({todos,dispatch}: TodoListProps) => {
                         { editId === todo.id ? (
                             <>
                                 <div className="flex flex-1 gap-2">
-                                    <input type="text" value = {editText} onChange={(e)=>setEditText(e.target.value)} className="border rounded p-1"/>
+                                    <input ref={inputRef} type="text" value = {editText} onChange={(e)=>setEditText(e.target.value)} className="border rounded p-1"/>
                                     <button className="text-cf-gray" onClick={handleSave(todo.id)}><Save size={18}/></button>
                                     <button onClick={handleCancel} className="text-cf-dark-red"><X size={18}/></button>
                                 </div>
